@@ -1,5 +1,5 @@
 function buttonCopy() {
-  var copyText = document.getElementById("input-url-generate");
+  var copyText = document.querySelector('[data-js="result-url"]');
   copyText.select();
   copyText.setSelectionRange(0, 99999);
   document.execCommand("copy");
@@ -16,17 +16,16 @@ function buttonCopy() {
   var $form = $('[data-js="form-generator"]');
   var $result = $('[data-js="result-url"]');
   var $phone = $('[data-js="phone"]');
-  var $url = 'https://api.whatsapp.com/send?phone=+55seunumerodetelefone&text=suamensagem';
-  
+  var $url = 'https://api.whatsapp.com/send?phone=+55';
+
+  function replacePhone() {
+    return $url+$phone.value.replace(/\D/g, '');
+  }
+
   $form.addEventListener('submit', function(e) {
     e.preventDefault();
-    $result.innerHTML = $phone.value.replace(/\D/g, '');
+    $result.value = replacePhone();
   }, false);
-
-  var $h5 = document.createElement('h5');
-  $h5.textContent = 'Seu link será gerado abaixo:';
-  $result.appendChild($h5);
-  $h5.style = "color: #004d40";
 
   // var $a = document.createElement('a');
   // var $linkText = document.createTextNode('Clique no botão para copiar o seu link!');
@@ -37,12 +36,5 @@ function buttonCopy() {
   // $a.style = "color:#FFF";
   // $a.className = "btn";
   // $result.appendChild($a);
-
-  var $input = document.createElement('input');
-  $input.textContent = 'Copiar o seu link';
-  $result.appendChild($input);
-  $input.value = $url;
-  $input.type = "text";
-  $input.id = "input-url-generate";
 
 })();
