@@ -1,11 +1,3 @@
-function buttonCopy() {
-  var copyUrl = document.querySelector('[data-js="result-url"]');
-  copyUrl.select();
-  copyUrl.setSelectionRange(0, 99999);
-  document.execCommand("copy");
-  alert("URL Copiada com sucesso!");
-}
-
 (function() {
   'use strict';
 
@@ -13,12 +5,20 @@ function buttonCopy() {
   var $result = $('[data-js="result-url"]');
   var $phone = $('[data-js="phone"]');
   var $message = $('[data-js="message"]');
+  var $buttonCopy = $('[data-js="button-copy"]');
   var $url = 'https://api.whatsapp.com/send?phone=+55';
 
   $form.addEventListener('submit', function(e) {
     e.preventDefault();
     $result.value = getUrl();
   }, false);
+
+  $buttonCopy.addEventListener('click', function() {
+    $result.select();
+    $result.setSelectionRange(0, 99999);
+    document.execCommand("copy");
+    alert("URL Copiada com sucesso!");
+  });
 
   function $(a) {
     return document.querySelector(a);
