@@ -22,10 +22,10 @@
 
   function $(a) {
     return document.querySelector(a);
-  }
+  };
 
   function getUrl() {
     return 'https://api.whatsapp.com/send?phone=+55'+$phone.value.replace(/\D/g, '')+'&text='+$message.value.replace(/\s/g, '%20');
-  }
+  };
 
 })();
