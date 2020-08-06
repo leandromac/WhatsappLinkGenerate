@@ -8,12 +8,17 @@
   var $buttonCopy = $('[data-js="button-copy"]');
   var $url = 'https://api.whatsapp.com/send?phone=+55';
 
-  $form.addEventListener('submit', (e)=>{
+  $form.addEventListener('submit', (e) => {
     e.preventDefault();
-    $result.value = getUrl();
+    if( $phone.value.trim() === '' ) {
+      alert('Informe o número de telefone.')
+    }
+    else {
+      $result.value = getUrl();
+    }
   }, false);
 
-  $buttonCopy.addEventListener('click', ()=>{
+  $buttonCopy.addEventListener('click', () => {
     $result.select();
     $result.setSelectionRange(0, 99999);
     document.execCommand("copy");
@@ -28,7 +33,7 @@
         .replace(/(\d{4})(\d)/,'$1-$2')
         .replace(/(\d{4})-(\d)(\d{4})/, '$1$2-$3')
         .replace(/(-\d{4})\d+?$/, '$1')
-    },
+    }
   }
 
   document.querySelectorAll('input').forEach(($input) => {
