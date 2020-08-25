@@ -1,6 +1,10 @@
 (function() {
   'use strict';
 
+  function $(a) {
+    return document.querySelector(a);
+  };
+
   var $form = $('[data-js="form-generator"]');
   var $result = $('[data-js="result-url"]');
   var $phone = $('[data-js="phone"]');
@@ -44,12 +48,8 @@
     }, false)
   });
 
-  function $(a) {
-    return document.querySelector(a);
-  };
-
   function getUrl() {
-    return 'https://api.whatsapp.com/send?phone=+55'+$phone.value.replace(/\D/g, '')+'&text='+$message.value.replace(/\s/g, '%20');
+    return $url+$phone.value.replace(/\D/g, '')+'&text='+$message.value.replace(/['?a'|\s]+$/g,'?.%20').replace(/\s/g, '%20');
   };
 
 })();
